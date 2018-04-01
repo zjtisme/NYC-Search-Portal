@@ -5,10 +5,10 @@ class Topbar extends Component {
   renderBasedOnLogin = () => {
     if(this.props.login) {
       return (
-        <div id="private-topbar" className="top-bar">
+        <div className="top-bar">
             <div className="top-bar-left">
               <ul className="menu">
-                  <li className="menu-text" onClick={()=>{this.props.renderContent("HomePage")}} id="private-welcome-text">Welcome {this.props.userName}!</li>
+                  <li className="menu-text" onClick={()=>{this.props.renderContent("HomePage")}}>Welcome {this.props.userName}!</li>
               </ul>
             </div>
             <div className="top-bar-right">
@@ -22,7 +22,7 @@ class Topbar extends Component {
       );
     } else {
       return (
-        <div id="public-topbar" className="top-bar">
+        <div className="top-bar">
             <div className="top-bar-left">
               <ul className="menu">
                   <li className="menu-text" onClick={()=>{this.props.renderContent("HomePage")}}>Welcome to NYC Search!</li>

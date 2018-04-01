@@ -29,9 +29,20 @@ task waitForUsersAPI(type: Exec) {
 	commandLine './wait-for-api.sh','http://localhost:8080', 'Users API'
 }
 
+task startUIDevServer(type: Exec) {
+	workingDir './nyc-search-ui'
+	commandLine 'pm2', 'start', 'node_modules/react-scripts/scripts/start.js', '-f', '--name', 'nyc-search-ui-test'
+}
+
+task stopUIDevServer(type: Exec) {
+	workingDir './nyc-search-ui'
+	commandLine 'pm2', 'stop', 'nyc-search-ui-test'
+}
+
 test {
 	dependsOn cleanTest
 	dependsOn waitForUsersAPI
+	dependsOn startUIDevServer
 
 	testLogging {
 		exceptionFormat "full"
@@ -39,6 +50,9 @@ test {
 		displayGranularity 2
 	}
 }
+
+test.finalizedBy(stopUIDevServer)
+test.finalizedBy(composeDown)
 
 repositories {
 	mavenCentral()
