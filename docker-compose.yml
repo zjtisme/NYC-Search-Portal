@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  app:
+    image: anapsix/alpine-java:8_jdk_unlimited
+    ports:
+      - '8080:8080'
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: './gradlew bootRun'
+    environment:
+      - GRADLE_USER_HOME=cache
+      - SPRING_PROFILES_ACTIVE=dev
+  postgresdev:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=pgdev
+  nyc-search-ui:
+    image: node
+    ports:
+     - "3000:3000"
+    working_dir: /app
+    volumes:
+     - ./nyc-search-ui:/app
+    command: 'npm start'
+    depends_on:
+      - app
+      - postgresdev
