@@ -62,6 +62,7 @@ public class UserRepositoryTest {
         userRepository.deleteAll();
     }
 
+    // Tests for findAll method
     @Test
     public void findAll_returnsAllUsers() {
         List<User> usersFromDb = userRepository.findAll();
@@ -133,6 +134,7 @@ public class UserRepositoryTest {
         assertThat(secondUsersBirthday, is("1994-10-09"));
     }
 
+    // Tests for findUsersWithUsername method
     @Test
     public void findUsersWithUsername_returnsAllUsers() {
         List<User> usersFromDb = userRepository.findUsersWithUsername("tiantian");
