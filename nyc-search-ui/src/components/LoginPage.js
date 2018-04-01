@@ -11,7 +11,7 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div id="login-form">
+      <div id="login-page">
         <h1 className="page-title">Login Page</h1>
         <div className="row">
           <div className="columns small-centered small-10 medium-6 large-4">
