@@ -35,6 +35,7 @@ public class UsersApiFeatureTest {
         userRepository.deleteAll();
     }
 
+    // Tests for CRUD manipulations for User
     @Test
     public void shouldAllowFullCrudForAUser() throws Exception {
 
@@ -126,6 +127,7 @@ public class UsersApiFeatureTest {
 
     }
 
+    // End-to-end test for one user api
     @Test
     public void shouldReturnErrorMessageWhenFindingUnexistingUser() throws Exception {
 
