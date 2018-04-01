@@ -109,6 +109,7 @@ public class UsersControllerTest {
         given(mockUserRepository.save(updatedSecondUser)).willReturn(updatedSecondUser);
     }
 
+    // Tests for findAllUsers
     @Test
     public void findAllUsers_success_returnsStatusOK() throws Exception {
 
@@ -189,6 +190,8 @@ public class UsersControllerTest {
                 .andExpect(jsonPath("$[0].birthday", is("1992-08-27")));
     }
 
+
+    // Tests for findUserById happy path
     @Test
     public void findUserById_success_returnsStatusOK() throws Exception {
 
@@ -261,6 +264,7 @@ public class UsersControllerTest {
                 .andExpect(jsonPath("$.birthday", is("1992-08-27")));
     }
 
+    // Tests for customized findUserByName
     @Test
     public void findUserByName_success_returnsStatusOK() throws Exception {
 
@@ -333,6 +337,7 @@ public class UsersControllerTest {
                 .andExpect(jsonPath("$[0].birthday", is("1992-08-27")));
     }
 
+    // Tests for findUserById unhappy path
     @Test
     public void findUserById_failure_userNotFoundReturns404() throws Exception {
 
@@ -349,6 +354,7 @@ public class UsersControllerTest {
                 .andExpect(status().reason(containsString("User with ID of 4 was not found!")));
     }
 
+    // Tests for deleteUserById happy path
     @Test
     public void deleteUserById_success_returnsStatusOk() throws Exception {
 
@@ -365,6 +371,8 @@ public class UsersControllerTest {
         verify(mockUserRepository, times(1)).delete(1L);
     }
 
+
+    // Tests for deleteUserById unhappy path
     @Test
     public void deleteUserById_failure_userNotFoundReturns404() throws Exception {
 
@@ -373,6 +381,7 @@ public class UsersControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    // Tests for createUser
     @Test
     public void createUser_success_returnsStatusOk() throws Exception {
 
@@ -481,6 +490,7 @@ public class UsersControllerTest {
                 .andExpect(jsonPath("$.birthday", is("1999-10-01")));
     }
 
+    // Tests for updateUserById happy path
     @Test
     public void updateUserById_success_returnsStatusOk() throws Exception {
 
@@ -589,6 +599,7 @@ public class UsersControllerTest {
                 .andExpect(jsonPath("$.birthday", is("2002-10-01")));
     }
 
+    // Tests for updateUserById unhappy path
     @Test
     public void updateUserById_failure_userNotFoundReturns404() throws Exception {
 
