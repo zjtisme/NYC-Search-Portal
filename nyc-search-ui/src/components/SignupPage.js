@@ -18,39 +18,39 @@ class SignupPage extends Component {
 
   render() {
     return (
-      <div>
+      <div id="signup-form">
         <h1 className="page-title">Signup Page</h1>
           <div className="row">
             <div className="columns small-centered small-10 medium-6 large-4">
               <div className="callout callout-auth">
           <label className="input-form">Username:
-            <input type="text" ref="username" placeholder="input username..."/>
+            <input id="signup-username" type="text" ref="username" placeholder="input username..."/>
           </label>
           <label className="input-form">Password:
-            <input type="password" ref="pass1" placeholder="input password..."/>
+            <input id="signup-password1" type="password" ref="pass1" placeholder="input password..."/>
           </label>
           <label className="input-form">Password Again:
-            <input type="password" ref="pass2" placeholder="input password again..."/>
+            <input id="signup-password2" type="password" ref="pass2" placeholder="input password again..."/>
           </label>
           <label className="input-form">FirstName:
-            <input type="text" ref="firstname" placeholder="your firstname..."/>
+            <input id="signup-firstname" type="text" ref="firstname" placeholder="your firstname..."/>
           </label>
           <label className="input-form">LastName:
-            <input type="text" ref="lastname" placeholder="your lastname..."/>
+            <input id="signup-lastname" type="text" ref="lastname" placeholder="your lastname..."/>
           </label>
           <label className="input-form">Gender:
-            <input type="text" ref="gender" placeholder="your gender..."/>
+            <input id="signup-gender" type="text" ref="gender" placeholder="your gender..."/>
           </label>
           <label className="input-form">Email:
-            <input type="text" ref="email" placeholder="your email..."/>
+            <input id="signup-email" type="text" ref="email" placeholder="your email..."/>
           </label>
           <label className="input-form">PhoneNumber:
-            <input type="text" ref="phonenumber" placeholder="your phone number..."/>
+            <input id="signup-phonenumber" type="text" ref="phonenumber" placeholder="your phone number..."/>
           </label>
           <label className="input-form">Birthday:
-            <input type="text" ref="birthday" placeholder="your birthday..."/>
+            <input id="signup-birthday" type="text" ref="birthday" placeholder="your birthday..."/>
           </label>
-          <button className="success button expanded" onClick={this.doSignup}>Submit</button>
+          <button id="signup-confirm-button" className="success button expanded" onClick={this.doSignup}>Submit</button>
           <p className="error-message">{this.props.signupErrorMSG}</p>
         </div>
       </div>
