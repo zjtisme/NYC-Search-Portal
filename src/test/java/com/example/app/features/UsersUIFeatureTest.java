@@ -65,7 +65,7 @@ public class UsersUIFeatureTest {
         Long secondUserId = secondUser.getId();
 
         System.setProperty("selenide.browser", "Chrome");
-        System.setProperty("selenide.headless", "true");
+//        System.setProperty("selenide.headless", "true");
 
         open("http://localhost:3000");
 
@@ -77,8 +77,7 @@ public class UsersUIFeatureTest {
         $("#login-password").sendKeys("123456");
         $("#login-confirm-button").click();
 
-        $("#configure-button").should(appear);
-        $("#delete-button").should(appear);
-        $("#logout-button").should(appear);
+        $("#configure-button").click();
+
     }
 }

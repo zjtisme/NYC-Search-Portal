@@ -6,22 +6,30 @@ import Container from './components/Container';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
 
-  state = {
-    login: false,
-    userId: 0,
-    userName: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    gender: "",
-    email: "",
-    phoneNumber: "",
-    birthday: "",
-    contentToBeRendered: "HomePage",
-    loginErrorMSG: "",
-    signupErrorMSG: "",
-    configureErrorMSG: ""
+    const usrInfo = localStorage.getItem('login');
+    if(usrInfo === null) {
+      this.state = {
+        login: false,
+        userId: 0,
+        userName: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        gender: "",
+        email: "",
+        phoneNumber: "",
+        birthday: "",
+        contentToBeRendered: "HomePage",
+        loginErrorMSG: "",
+        signupErrorMSG: "",
+        configureErrorMSG: ""
+      };
+    } else {
+      this.state = JSON.parse(usrInfo);
+    }
   }
 
   renderContent = (content) => {
@@ -48,6 +56,7 @@ class App extends Component {
           this.setState({...this.state, login: true, userName: cand['userName'], userId: cand['id'],
           password: cand['password'], firstName: cand['firstName'], lastName: cand['lastName'], gender: cand['gender'],
           email: cand['email'], phoneNumber: cand['phoneNumber'], birthday: cand['birthday'], contentToBeRendered: 'HomePage', loginErrorMSG: ""});
+          localStorage.setItem('login', JSON.stringify(this.state));
         }
 
     } catch (error){
@@ -87,6 +96,7 @@ class App extends Component {
           password: data['password'], firstName: data['firstName'], lastName: data['lastName'],
           gender: data['gender'], email: data['email'], phoneNumber: data['phoneNumber'], birthday: data['birthday'],
           contentToBeRendered: 'HomePage', signupErrorMSG: ''});
+        localStorage.setItem('login', JSON.stringify(this.state));
       } else {
         this.setState({...this.state, signupErrorMSG: 'Error occurs, the status code is: ' + response.status});
       }
@@ -116,6 +126,7 @@ class App extends Component {
     };
 
     this.setState(originalState);
+    localStorage.removeItem('login');
   }
 
   handleDelete = async () => {
