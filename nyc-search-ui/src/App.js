@@ -171,6 +171,7 @@ class App extends Component {
           password: data['password'], firstName: data['firstName'], lastName: data['lastName'],
           gender: data['gender'], email: data['email'], phoneNumber: data['phoneNumber'], birthday: data['birthday'],
           contentToBeRendered: 'HomePage', configureErrorMSG: ''});
+        localStorage.setItem('login', JSON.stringify(this.state));
       } else {
         this.setState({...this.state, configureErrorMSG: 'Error occurs, the status code is: ' + response.status});
       }
