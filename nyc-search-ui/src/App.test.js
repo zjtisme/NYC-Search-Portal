@@ -1,9 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { mount, shallow } from 'enzyme';
 import App from './App';
+import Topbar from './components/Topbar';
+import Container from './components/Container';
+
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  mount(<App />);
+});
+
+it('renders Topbar and Container components', () => {
+  const wrapper = mount(<App />);
+  expect(wrapper).toContainReact(<Topbar login={false} userName={""} renderContent={jest.fn}
+    handleLogout={jest.fn} handleDelete={jest.fn}/>);
 });

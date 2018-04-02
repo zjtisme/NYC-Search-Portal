@@ -28,7 +28,13 @@ class App extends Component {
         configureErrorMSG: ""
       };
     } else {
-      this.state = JSON.parse(usrInfo);
+      try {
+        this.state = JSON.parse(usrInfo);
+      } catch (error){
+
+      }
+      console.log(usrInfo, typeof(usrInfo));
+      console.log(typeof(JSON.parse(usrInfo)));
     }
   }
 
@@ -181,7 +187,6 @@ class App extends Component {
       console.log('Error updating account info!');
       console.log(error);
     }
-
   }
 
   render() {
@@ -189,9 +194,8 @@ class App extends Component {
       <div>
         <Topbar login={this.state.login} userName={this.state.userName} renderContent={this.renderContent}
           handleLogout={this.handleLogout} handleDelete={this.handleDelete}/>
-        <Container content={this.state.contentToBeRendered} loginErrorMSG={this.state.loginErrorMSG}
-          handleLogin={this.handleLogin} signupErrorMSG={this.state.signupErrorMSG} handleSignup={this.handleSignup}
-          configureErrorMSG={this.state.configureErrorMSG} {...this.state} handleUpdate={this.handleUpdate}/>
+        <Container handleLogin={this.handleLogin}  handleSignup={this.handleSignup}
+          {...this.state} handleUpdate={this.handleUpdate}/>
       </div>
     );
   }

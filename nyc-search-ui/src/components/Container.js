@@ -9,7 +9,7 @@ class Container extends Component {
 
 
   renderComponents = () => {
-    switch (this.props.content) {
+    switch (this.props.contentToBeRendered) {
       case "HomePage":
         return <HomePage />;
       case "LoginPage":
