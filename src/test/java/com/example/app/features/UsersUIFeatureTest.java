@@ -6,16 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.stream.Stream;
-
 import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -72,6 +67,7 @@ public class UsersUIFeatureTest {
     public void shouldAllowUserSearchByKeyword() throws Exception {
         System.setProperty("selenide.browser", "Chrome");
         System.setProperty("selenide.headless", "true");
+        System.setProperty("selenide.timeout", "10000");
 
         open("http://localhost:3000");
 
@@ -87,6 +83,8 @@ public class UsersUIFeatureTest {
     @Test
     public void shouldAllowFullCrudFunctionalityForAUser() throws Exception {
         System.setProperty("selenide.browser", "Chrome");
+        System.setProperty("selenide.headless", "true");
+        System.setProperty("selenide.timeout", "10000");
 
         open("http://localhost:3000");
 
@@ -107,7 +105,6 @@ public class UsersUIFeatureTest {
         $("#signup-confirm-button").click();
 
         // Check show user profile functionality
-        sleep(500);
         $("#configure-button").should(appear);
         $("#logout-button").should(appear);
         $("#delete-button").should(appear);
@@ -129,14 +126,14 @@ public class UsersUIFeatureTest {
         $("#configure-username").clear();
         $("#configure-username").sendKeys("updated user");
         $("#configure-confirm-button").click();
-        sleep(500);
+
 
         $("#private-welcome-text").shouldHave(text("Welcome updated user!"));
 
         $("#logout-button").click();
 
         // Check user log in functionality
-        sleep(500);
+
         $("#public-welcome-text").should(appear);
 
         $("#login-button").click();
@@ -148,13 +145,13 @@ public class UsersUIFeatureTest {
         $("#login-confirm-button").click();
 
         // Check user delete account functionality
-        sleep(500);
+
         $("#delete-button").should(appear);
 
         $("#delete-button").click();
         getWebDriver().switchTo().alert().accept();
 
-        sleep(500);
+
         $("#public-welcome-text").should(appear);
 
         // Check if delete user successful or not
@@ -163,7 +160,6 @@ public class UsersUIFeatureTest {
         $("#login-password").sendKeys("1234");
         $("#login-confirm-button").click();
 
-        sleep(500);
         $("#login-error").shouldHave(text("Cannot find such user, please sign up first!"));
     }
 }
