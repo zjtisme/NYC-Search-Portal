@@ -27,7 +27,7 @@ class LoginPage extends Component {
 
                 <button id="login-confirm-button" className="success button expanded" onClick={this.doLogin}>Log In</button>
 
-                <p className="error-message">{this.props.loginErrorMSG}</p>
+                <p id="login-error" className="error-message">{this.props.loginErrorMSG}</p>
             </div>
           </div>
         </div>

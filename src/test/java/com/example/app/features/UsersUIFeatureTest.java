@@ -18,10 +18,16 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class UsersUIFeatureTest {
+
+    private User firstUser;
+    private User secondUser;
+    private Long firstUserId;
+    private Long secondUserId;
 
     @Autowired
     private UserRepository userRepository;
@@ -29,17 +35,7 @@ public class UsersUIFeatureTest {
     @Before
     public void setUp() {
         userRepository.deleteAll();
-    }
-
-    @After
-    public void tearDown() {
-        userRepository.deleteAll();
-    }
-
-    @Test
-    public void shouldAllowFullCrudFunctionalityForAUser() throws Exception {
-
-        User firstUser = new User(
+        firstUser = new User(
                 "zjtisking",
                 "123456",
                 "Jintai",
@@ -50,10 +46,9 @@ public class UsersUIFeatureTest {
                 "1992-08-27"
         );
         firstUser = userRepository.save(firstUser);
-        Long firstUserId = firstUser.getId();
-        String firstUserUserName = firstUser.getUserName();
+        firstUserId = firstUser.getId();
 
-        User secondUser = new User(
+        secondUser = new User(
                 "tiantian",
                 "654321",
                 "Tian",
@@ -64,21 +59,14 @@ public class UsersUIFeatureTest {
                 "1994-10-09"
         );
         secondUser = userRepository.save(secondUser);
-        Long secondUserId = secondUser.getId();
-
-        System.setProperty("selenide.browser", "Chrome");
-        System.setProperty("selenide.headless", "true");
-
-        open("http://localhost:3000");
-
-        $("#login-button").click();
-
-        $("#login-page").should(appear);
-
-        $("#login-username").sendKeys("zjtisking");
-        $("#login-password").sendKeys("123456");
-        $("#login-confirm-button").click();
+        secondUserId = secondUser.getId();
     }
+
+    @After
+    public void tearDown() {
+        userRepository.deleteAll();
+    }
+
 
     @Test
     public void shouldAllowUserSearchByKeyword() throws Exception {
@@ -93,5 +81,89 @@ public class UsersUIFeatureTest {
         $("#search-confirm-button").click();
 
         $$("[data-news-display]").shouldHave(size(50));
+        $("#news-list").shouldHave(text("student"));
+    }
+
+    @Test
+    public void shouldAllowFullCrudFunctionalityForAUser() throws Exception {
+        System.setProperty("selenide.browser", "Chrome");
+
+        open("http://localhost:3000");
+
+        // Check create user functionality
+        $("#signup-button").click();
+        $("#signup-page").should(appear);
+
+        $("#signup-username").sendKeys("new user");
+        $("#signup-password1").sendKeys("1234");
+        $("#signup-password2").sendKeys("1234");
+        $("#signup-firstname").sendKeys("New");
+        $("#signup-lastname").sendKeys("User");
+        $("#signup-gender").sendKeys("female");
+        $("#signup-email").sendKeys("newuser@gmail.com");
+        $("#signup-phonenumber").sendKeys("1112223333");
+        $("#signup-birthday").sendKeys("2000-01-01");
+
+        $("#signup-confirm-button").click();
+
+        // Check show user profile functionality
+        sleep(500);
+        $("#configure-button").should(appear);
+        $("#logout-button").should(appear);
+        $("#delete-button").should(appear);
+
+        $("#configure-button").click();
+        $("#configure-page").should(appear);
+
+        $("#configure-username").shouldHave(value("new user"));
+        $("#configure-password1").shouldHave(value("1234"));
+        $("#configure-password2").shouldHave(value("1234"));
+        $("#configure-firstname").shouldHave(value("New"));
+        $("#configure-lastname").shouldHave(value("User"));
+        $("#configure-gender").shouldHave(value("female"));
+        $("#configure-email").shouldHave(value("newuser@gmail.com"));
+        $("#configure-phonenumber").shouldHave(value("1112223333"));
+        $("#configure-birthday").shouldHave(value("2000-01-01"));
+
+        // Check update user profile functionality
+        $("#configure-username").clear();
+        $("#configure-username").sendKeys("updated user");
+        $("#configure-confirm-button").click();
+        sleep(500);
+
+        $("#private-welcome-text").shouldHave(text("Welcome updated user!"));
+
+        $("#logout-button").click();
+
+        // Check user log in functionality
+        sleep(500);
+        $("#public-welcome-text").should(appear);
+
+        $("#login-button").click();
+        $("#login-page").should(appear);
+
+        $("#login-username").sendKeys("updated user");
+        $("#login-password").sendKeys("1234");
+
+        $("#login-confirm-button").click();
+
+        // Check user delete account functionality
+        sleep(500);
+        $("#delete-button").should(appear);
+
+        $("#delete-button").click();
+        getWebDriver().switchTo().alert().accept();
+
+        sleep(500);
+        $("#public-welcome-text").should(appear);
+
+        // Check if delete user successful or not
+        $("#login-button").click();
+        $("#login-username").sendKeys("updated user");
+        $("#login-password").sendKeys("1234");
+        $("#login-confirm-button").click();
+
+        sleep(500);
+        $("#login-error").shouldHave(text("Cannot find such user, please sign up first!"));
     }
 }

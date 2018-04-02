@@ -6,7 +6,7 @@ class NewsList extends Component {
 
   render() {
     const newsList = this.props.newsList.map((news, index)=> {
-      return <News {...news} key={news.request_id} index={index+1}/>
+      return <News {...news} key={index} index={index+1}/>
     });
 
     const renderNewsList = () => {
@@ -18,7 +18,7 @@ class NewsList extends Component {
     };
 
     return (
-      <div className="container">
+      <div className="container" id="news-list">
         {renderNewsList()}
       </div>
     );

@@ -7,13 +7,13 @@ class Topbar extends Component {
     const renderBasedOnLogin = () => {
       if(this.props.login) {
         return (
-          <div className="top-bar">
-              <div className="top-bar-left">
+          <div className="top-bar" key={200}>
+              <div className="top-bar-left" key={202}>
                 <ul className="menu">
-                    <li className="menu-text logo" onClick={()=>{this.props.renderContent("HomePage")}}>Welcome {this.props.userName}!</li>
+                    <li className="menu-text logo" id="private-welcome-text" onClick={()=>{this.props.renderContent("HomePage")}}>Welcome {this.props.userName}!</li>
                 </ul>
               </div>
-              <div className="top-bar-right">
+              <div className="top-bar-right" key={203}>
                 <ul className="menu">
                   <li><button id="configure-button" className="hollow button success" onClick={()=>{this.props.renderContent("ConfigurePage")}}>Settings</button></li>
                   <li><button id="delete-button" className="hollow button alert" onClick={()=>{this.props.handleDelete()}}>Delete</button></li>
@@ -24,15 +24,15 @@ class Topbar extends Component {
         );
       } else {
         return (
-          <div className="top-bar">
-              <div className="top-bar-left">
+          <div className="top-bar" key={201}>
+              <div className="top-bar-left" key={204}>
                 <ul className="menu">
-                    <li className="menu-text logo" onClick={()=>{this.props.renderContent("HomePage")}}>Welcome to NYC Search!</li>
+                    <li className="menu-text logo" id="public-welcome-text" onClick={()=>{this.props.renderContent("HomePage")}}>Welcome to NYC Search!</li>
                 </ul>
               </div>
-              <div className="top-bar-right">
+              <div className="top-bar-right" key={205}>
                 <ul className="menu">
-                  <li><button id="login-button" className="hollow button success" onClick={()=>{this.props.renderContent("LoginPage")}}>Login</button></li>
+                  <li><button id="login-button"  className="hollow button success" onClick={()=>{this.props.renderContent("LoginPage")}}>Login</button></li>
                   <li><button id="signup-button" className="hollow button warning" onClick={()=>{this.props.renderContent("SignupPage")}}>Signup</button></li>
                 </ul>
               </div>
