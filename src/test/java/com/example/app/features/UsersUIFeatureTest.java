@@ -66,7 +66,7 @@ public class UsersUIFeatureTest {
     @Test
     public void shouldAllowUserSearchByKeyword() throws Exception {
         System.setProperty("selenide.browser", "Chrome");
-        System.setProperty("selenide.headless", "true");
+//        System.setProperty("selenide.headless", "true");
         System.setProperty("selenide.timeout", "10000");
 
         open("http://localhost:3000");
@@ -162,6 +162,8 @@ public class UsersUIFeatureTest {
 
         $("#login-error").shouldHave(text("Cannot find such user, please sign up first!"));
 
-        
+        // Check backing to homepage functionality
+        $("#public-welcome-text").click();
+        $("#home-page").should(appear);
     }
 }
