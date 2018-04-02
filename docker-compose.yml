@@ -20,3 +20,14 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=postgres
       - POSTGRES_DB=pgdev
+  nyc-search-ui:
+     image: node
+     ports:
+      - "3000:3000"
+     working_dir: /app
+     volumes:
+      - ./nyc-search-ui:/app
+     command: 'npm start'
+     depends_on:
+       - app
+       - postgresdev
