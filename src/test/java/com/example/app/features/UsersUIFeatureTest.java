@@ -161,5 +161,7 @@ public class UsersUIFeatureTest {
         $("#login-confirm-button").click();
 
         $("#login-error").shouldHave(text("Cannot find such user, please sign up first!"));
+
+        
     }
 }
