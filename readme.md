@@ -3,6 +3,8 @@
 news and information of NYC. Besides, users can log in and sign up. When 
 user is at his/her own account, he/she can modify settings, delete account or log out!</p>
 <h4>App Start Instruction:</h4>
+<p>Make sure to run build.gradle first to set up springboot environment, and type
+"npm install" inside nyc-search-ui to install all dependencies.</p>
 <p>Once you have docker on your computer and would be better to have
 docker-compose CLI installed, you can just spin up the whole system
 by typing "docker-compose up" inside the project folder. When docker-compose inlitialization
