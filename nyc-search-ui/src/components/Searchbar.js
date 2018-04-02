@@ -14,8 +14,8 @@ class Searchbar extends Component {
   render() {
     return (
       <div className="container__header">
-        <input type="search" ref="searchText" placeholder="search 50 latest news by keywords..."/>
-        <button className="button expanded" onClick={this.doSearch}>search</button>
+        <input type="search" id="search-bar" ref="searchText" placeholder="search 50 latest news by keywords..."/>
+        <button id="search-confirm-button" className="button expanded" onClick={this.doSearch}>search</button>
       </div>
     );
   }

@@ -14,6 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.stream.Stream;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
@@ -65,7 +67,7 @@ public class UsersUIFeatureTest {
         Long secondUserId = secondUser.getId();
 
         System.setProperty("selenide.browser", "Chrome");
-//        System.setProperty("selenide.headless", "true");
+        System.setProperty("selenide.headless", "true");
 
         open("http://localhost:3000");
 
@@ -76,8 +78,20 @@ public class UsersUIFeatureTest {
         $("#login-username").sendKeys("zjtisking");
         $("#login-password").sendKeys("123456");
         $("#login-confirm-button").click();
+    }
 
-        $("#configure-button").click();
+    @Test
+    public void shouldAllowUserSearchByKeyword() throws Exception {
+        System.setProperty("selenide.browser", "Chrome");
+        System.setProperty("selenide.headless", "true");
 
+        open("http://localhost:3000");
+
+        $("#search-bar").should(appear);
+        $("#search-confirm-button").should(appear);
+        $("#search-bar").sendKeys("student");
+        $("#search-confirm-button").click();
+
+        $$("[data-news-display]").shouldHave(size(50));
     }
 }
