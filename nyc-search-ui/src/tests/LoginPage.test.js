@@ -11,7 +11,7 @@ describe('LoginPage', () => {
     expect(wrapper.find('#login-page')).toExist();
   });
 
-  it('should call handleLogin when pressed login-confrim-button', () => {
+  it('should call handleLogin function when pressed login-confrim-button', () => {
     let handleLogin_spy = jest.fn();
     const wrapper = mount(<LoginPage handleLogin={handleLogin_spy}/>);
     wrapper.find("#login-confirm-button").simulate('click');

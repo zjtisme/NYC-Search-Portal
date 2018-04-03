@@ -26,9 +26,9 @@ describe('ConfigurePage', () => {
     expect(wrapper.instance().state.updatedUser.firstName).toEqual('updated firstname');
   });
 
-  test('should call handleUpdate when confirm button has been pressed', () => {
+  test('should call handleUpdate function when confirm button has been pressed', () => {
     let handleUpdate_spy = jest.fn();
-    const wrapper = mount(<ConfigurePage handleUpdate={handleUpdate_spy}/>);
+    const wrapper = shallow(<ConfigurePage handleUpdate={handleUpdate_spy}/>);
     wrapper.find('#configure-confirm-button').simulate('click');
     expect(handleUpdate_spy).toHaveBeenCalled();
   });
