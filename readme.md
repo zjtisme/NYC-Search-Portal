@@ -12,3 +12,4 @@ gets done, you can type "http://localhost:3000" to play with this app.</p>
 <h4>App Test Instruction:</h4>
 <p>Run full tests is simple, just type "./gradlew test" inside project folder 
 to fire up the whole testing procedure.</p>
+<p>Bonus point: Run react component tests by typing "npm test" inside nyc-search-ui folder.</p>
