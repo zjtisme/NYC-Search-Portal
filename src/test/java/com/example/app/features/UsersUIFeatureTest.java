@@ -66,7 +66,7 @@ public class UsersUIFeatureTest {
     @Test
     public void shouldAllowUserSearchByKeyword() throws Exception {
         System.setProperty("selenide.browser", "Chrome");
-//        System.setProperty("selenide.headless", "true");
+        System.setProperty("selenide.headless", "true");
         System.setProperty("selenide.timeout", "10000");
 
         open("http://localhost:3000");
@@ -97,10 +97,11 @@ public class UsersUIFeatureTest {
         $("#signup-password2").sendKeys("1234");
         $("#signup-firstname").sendKeys("New");
         $("#signup-lastname").sendKeys("User");
-        $("#signup-gender").sendKeys("female");
+//        $("#signup-gender").sendKeys("female");
+        $("#signup-gender").selectOption(2);
         $("#signup-email").sendKeys("newuser@gmail.com");
         $("#signup-phonenumber").sendKeys("1112223333");
-        $("#signup-birthday").sendKeys("2000-01-01");
+        $("#signup-birthday").sendKeys("01-01-2000");
 
         $("#signup-confirm-button").click();
 
@@ -117,7 +118,7 @@ public class UsersUIFeatureTest {
         $("#configure-password2").shouldHave(value("1234"));
         $("#configure-firstname").shouldHave(value("New"));
         $("#configure-lastname").shouldHave(value("User"));
-        $("#configure-gender").shouldHave(value("female"));
+        $("#configure-gender").shouldHave(value("Female"));
         $("#configure-email").shouldHave(value("newuser@gmail.com"));
         $("#configure-phonenumber").shouldHave(value("1112223333"));
         $("#configure-birthday").shouldHave(value("2000-01-01"));

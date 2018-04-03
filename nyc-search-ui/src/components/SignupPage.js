@@ -44,10 +44,10 @@ class SignupPage extends Component {
             <input id="signup-lastname" type="text" ref="lastname" placeholder="your lastname..."/>
           </label>
           <label className="input-form">Gender:
-              <select>
-                <option value="" ref="genderNull">---------</option>
-                <option value="Male" ref="genderMale">Male</option>
-                <option value="Female" ref="genderFemale">Female</option>
+              <select id="signup-gender">
+                <option value="" ref="genderNull" id="signup-gender-null">---------</option>
+                <option value="Male" ref="genderMale" id="signup-gender-male">Male</option>
+                <option value="Female" ref="genderFemale" id="signup-gender-female">Female</option>
               </select>
           </label>
           <label className="input-form">Email:
