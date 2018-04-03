@@ -26,7 +26,7 @@ it('should render different content based on actual needs', () => {
   expect(wrapper.instance().state.contentToBeRendered).toEqual('LoginPage');
 });
 
-describe('test some async functions inside App', () => {
+describe('App axios functions', () => {
   it('should let user log in if input valid username and password', ()=>{
     const wrapper = shallow(<App />);
     var mock = new MockAdapter(axios);
