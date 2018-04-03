@@ -21,10 +21,16 @@ class HomePage extends Component {
   }
 
   render() {
+    const renderHeader = () => {
+      if(this.props.login) {
+        return <h1 className="page-title">Personal Account</h1>
+      }
+    };
     return (
       <div>
         <div id="home-page" className="row">
             <div className="columns small-centered small-10 medium-8 large-8">
+              {renderHeader()}
               <Searchbar handleSearch={this.handleSearch}/>
               <NewsList newsList={this.state.newsList}/>
             </div>

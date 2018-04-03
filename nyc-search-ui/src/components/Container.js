@@ -11,7 +11,7 @@ class Container extends Component {
   renderComponents = () => {
     switch (this.props.contentToBeRendered) {
       case "HomePage":
-        return <HomePage />;
+        return <HomePage login={this.props.login}/>;
       case "LoginPage":
         return <LoginPage loginErrorMSG={this.props.loginErrorMSG} handleLogin={this.props.handleLogin}/>;
       case "SignupPage":

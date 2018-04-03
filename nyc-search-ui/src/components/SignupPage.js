@@ -8,7 +8,12 @@ class SignupPage extends Component {
     const pass2 = this.refs.pass2.value;
     const firstname = this.refs.firstname.value;
     const lastname = this.refs.lastname.value;
-    const gender = this.refs.gender.value;
+    let gender = this.refs.genderNull.value;
+    if(this.refs.genderMale.selected) {
+      gender = this.refs.genderMale.value;
+    } else if(this.refs.genderFemale.selected) {
+      gender = this.refs.genderFemale.value;
+    }
     const email = this.refs.email.value;
     const phonenumber = this.refs.phonenumber.value;
     const birthday = this.refs.birthday.value;
@@ -39,16 +44,20 @@ class SignupPage extends Component {
             <input id="signup-lastname" type="text" ref="lastname" placeholder="your lastname..."/>
           </label>
           <label className="input-form">Gender:
-            <input id="signup-gender" type="text" ref="gender" placeholder="your gender..."/>
+              <select>
+                <option value="" ref="genderNull">---------</option>
+                <option value="Male" ref="genderMale">Male</option>
+                <option value="Female" ref="genderFemale">Female</option>
+              </select>
           </label>
           <label className="input-form">Email:
-            <input id="signup-email" type="text" ref="email" placeholder="your email..."/>
+            <input id="signup-email" type="email" ref="email" placeholder="your email..."/>
           </label>
           <label className="input-form">PhoneNumber:
-            <input id="signup-phonenumber" type="text" ref="phonenumber" placeholder="your phone number..."/>
+            <input id="signup-phonenumber" type="tel" ref="phonenumber" placeholder="your phone number..."/>
           </label>
           <label className="input-form">Birthday:
-            <input id="signup-birthday" type="text" ref="birthday" placeholder="your birthday..."/>
+            <input id="signup-birthday" type="date" ref="birthday" placeholder="your birthday..."/>
           </label>
           <button id="signup-confirm-button" className="success button expanded" onClick={this.doSignup}>Submit</button>
           <p className="error-message">{this.props.signupErrorMSG}</p>

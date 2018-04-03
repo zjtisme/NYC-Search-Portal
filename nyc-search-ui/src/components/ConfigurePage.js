@@ -63,16 +63,16 @@ class ConfigurePage extends Component {
             <input id="configure-lastname" type="text" ref="lastname" name="lastName" value={this.state.updatedUser.lastName} onChange={this.handleChange}/>
           </label>
           <label className="input-form">Gender:
-            <input id="configure-gender" type="text" ref="gender" name="gender" value={this.state.updatedUser.gender} onChange={this.handleChange}/>
+            <input id="configure-gender" type="text" ref="gender" name="gender" value={this.state.updatedUser.gender}/>
           </label>
           <label className="input-form">Email:
-            <input id="configure-email" type="text" ref="email" name="email" value={this.state.updatedUser.email} onChange={this.handleChange}/>
+            <input id="configure-email" type="email" ref="email" name="email" value={this.state.updatedUser.email} onChange={this.handleChange}/>
           </label>
           <label className="input-form">PhoneNumber:
-            <input id="configure-phonenumber" type="text" ref="phonenumber" name="phoneNumber" value={this.state.updatedUser.phoneNumber} onChange={this.handleChange}/>
+            <input id="configure-phonenumber" type="tel" ref="phonenumber" name="phoneNumber" value={this.state.updatedUser.phoneNumber} onChange={this.handleChange}/>
           </label>
           <label className="input-form">Birthday:
-            <input id="configure-birthday" type="text" ref="birthday" name="birthday" value={this.state.updatedUser.birthday} onChange={this.handleChange}/>
+            <input id="configure-birthday" type="date" ref="birthday" name="birthday" value={this.state.updatedUser.birthday} onChange={this.handleChange}/>
           </label>
           <button id="configure-confirm-button" className="success button expanded" onClick={this.doModify}>Submit</button>
           <p className="error-message">{this.props.configureErrorMSG}</p>
