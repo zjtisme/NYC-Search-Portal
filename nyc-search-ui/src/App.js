@@ -28,13 +28,7 @@ class App extends Component {
         configureErrorMSG: ""
       };
     } else {
-      try {
-        this.state = JSON.parse(usrInfo);
-      } catch (error){
-
-      }
-      console.log(usrInfo, typeof(usrInfo));
-      console.log(typeof(JSON.parse(usrInfo)));
+      this.state = JSON.parse(usrInfo);
     }
   }
 
