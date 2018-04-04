@@ -97,7 +97,6 @@ public class UsersUIFeatureTest {
         $("#signup-password2").sendKeys("1234");
         $("#signup-firstname").sendKeys("New");
         $("#signup-lastname").sendKeys("User");
-//        $("#signup-gender").sendKeys("female");
         $("#signup-gender").selectOption(2);
         $("#signup-email").sendKeys("newuser@gmail.com");
         $("#signup-phonenumber").sendKeys("1112223333");
