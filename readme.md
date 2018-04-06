@@ -14,16 +14,4 @@ gets done, you can type "http://localhost:3000" to play with this app.</p>
 to fire up the whole testing procedure.</p>
 <p>Bonus point: Run react component tests by typing "npm test" inside nyc-search-ui folder.</p>
 
-nyc-search-ui:
-     image: node
-     ports:
-      - "3000:3000"
-     working_dir: /app
-     volumes:
-      - ./nyc-search-ui:/app
-     command: 'npm start'
-     depends_on:
-       - app
-       - postgresdev
-       - flyway-migrator
        
