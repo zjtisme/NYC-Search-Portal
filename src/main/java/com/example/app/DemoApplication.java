@@ -1,6 +1,6 @@
 package com.example.app;
 
-import com.netflix.ribbon.proxy.annotation.Http;
+import org.springframework.http.HttpMethod;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +29,7 @@ public class DemoApplication {
 		config.setAllowCredentials(true);
 		config.setAllowedOrigins(Collections.singletonList("*"));
 		config.setAllowedHeaders(Collections.singletonList("*"));
-		config.setAllowedMethods(Arrays.stream(Http.HttpMethod.values()).map(Http.HttpMethod::name).collect(Collectors.toList()));
+		config.setAllowedMethods(Arrays.stream(HttpMethod.values()).map(HttpMethod::name).collect(Collectors.toList()));
 		source.registerCorsConfiguration("/**", config);
 		return new CorsFilter(source);
 	}
