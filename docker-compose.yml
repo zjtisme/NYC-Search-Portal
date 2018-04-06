@@ -27,15 +27,3 @@ services:
       depends_on:
         - postgresdev
       command: postgresdev 5432 postgres password pgdev public
-  nyc-search-ui:
-     image: node
-     ports:
-      - "3000:3000"
-     working_dir: /app
-     volumes:
-      - ./nyc-search-ui:/app
-     command: 'npm start'
-     depends_on:
-       - app
-       - postgresdev
-       - flyway-migrator
