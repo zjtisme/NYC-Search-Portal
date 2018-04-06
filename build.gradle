@@ -46,6 +46,11 @@ repositories {
 	mavenCentral()
 }
 
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.cloud:spring-cloud-netflix:1.4.0.RELEASE'
+	}
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
@@ -65,4 +70,7 @@ dependencies {
 	testCompile 'org.seleniumhq.selenium:selenium-chrome-driver:3.9.1'
 	testCompile 'org.seleniumhq.selenium:selenium-support:3.9.1'
 	testCompile 'com.codeborne:selenide:4.10.01'
+
+	compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+	compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 }
