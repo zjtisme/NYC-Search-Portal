@@ -27,10 +27,3 @@ nyc-search-ui:
        - postgresdev
        - flyway-migrator
        
-flyway-migrator:
-      image: gsengun/flyway-postgres
-      volumes:
-        - ./sql:/flyway/sql
-      depends_on:
-        - postgresdev
-      command: postgresdev 5432 postgres password pgdev public
